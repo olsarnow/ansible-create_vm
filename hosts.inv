@@ -1,0 +1,5 @@
+[prod]
+example1.cbu.uib.no 
+
+[test]                                                                          
+192.168.56.2
