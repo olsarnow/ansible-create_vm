@@ -9,9 +9,7 @@
     size: "{{ disksize_mb }}g"
 
 - name: create mkfs 
-  command: "{{ item }}"
-  with_items:
-    - mkfs.ext4 /dev/{{ volumegroup }}/{{ hostname }}
+  command: mkfs.ext4 /dev/mapper/{{ volumegroup }}-{{ hostname }}
   tags: lvm
 
 - name: mount volume
