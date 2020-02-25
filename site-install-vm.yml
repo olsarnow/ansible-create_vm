@@ -1,0 +1,11 @@
+---
+- hosts:
+    - "{{ hosts_var }}"
+  vars_files:
+    - group_vars/all
+  become: true
+
+  roles:
+
+  include:
+    - playbooks/check.yml

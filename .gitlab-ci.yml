@@ -1,0 +1,9 @@
+image: olsarnow/ansible-lint_osa
+before_script:
+stages:
+  - ansible-lint
+ansible-lint:
+  stage: ansible-lint
+  script:
+    - chmod 0750 .
+    - ansible-lint *.yml
