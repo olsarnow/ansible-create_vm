@@ -1,4 +1,6 @@
 hostname: testvm
+volumegroup: export
+basedir: "/export/virtual/vmdata/"
 ramsize_mb: 4096
 cpu_counts: 1
 disksize_gb: 50
