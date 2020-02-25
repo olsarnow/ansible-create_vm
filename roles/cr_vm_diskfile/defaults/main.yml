@@ -6,4 +6,4 @@ description: "just_another_vm"
 ip: 129.177.16.106
 dns: 129.177.16.3
 gateway: 129.177.16.1
-overhead: 10
+overhead: 20
