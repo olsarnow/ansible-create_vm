@@ -8,8 +8,10 @@
     lv: "{{ hostname }}"
     size: "{{ disksize_mb }}g"
 
-- name: create mkfs 
-  command: mkfs.ext4 /dev/mapper/{{ volumegroup }}-{{ hostname }}
+- name: create mkfs
+  filesystem:
+    fstype: ext4
+    dev: "/dev/mapper/{{ volumegroup }}-{{ hostname }}"
   tags: lvm
 
 - name: mount volume
