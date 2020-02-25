@@ -5,4 +5,4 @@
 - name: create lvm disk and mountpoint
   command: >
     lvcreate -L {{ disksize }}GB -n {{ hostname }} {{ volumegroup }}
-    mkfs.ext4 /dev/{{ volumegroup}}/vm-{{hostname}}
+    mkfs.ext4 /dev/{{ volumegroup }}/vm-{{hostname}}
