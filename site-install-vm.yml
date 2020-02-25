@@ -5,7 +5,7 @@
     - group_vars/all
   become: true
 
-  roles:
+#  roles:
 
   include:
     - playbooks/check.yml
