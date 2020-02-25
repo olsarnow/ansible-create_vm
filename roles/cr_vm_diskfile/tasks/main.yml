@@ -10,7 +10,7 @@
 
 - name: create mkfs and create directory
   command: "{{ item }}"
-  with_items: 
+  with_items:
     - mkfs.ext4 /dev/{{ volumegroup }}/{{ hostname }}
     - mkdir {{ basedir }}/{{ hostname }}
   tags: lvm
@@ -24,6 +24,7 @@
 - name: mount volume
   mount:
     path: "{{ basedir }}/{{ hostname }}"
-    src: 
+    src: "/dev/mapper/{{ volumegroup }}-{{ hostname }}"
+    fstype: ext4
     state: present
   tags: lvm
