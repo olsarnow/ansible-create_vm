@@ -8,17 +8,10 @@
     lv: "{{ hostname }}"
     size: "{{ disksize_mb }}g"
 
-- name: create mkfs and create directory
+- name: create mkfs 
   command: "{{ item }}"
   with_items:
     - mkfs.ext4 /dev/{{ volumegroup }}/{{ hostname }}
-    - mkdir {{ basedir }}/{{ hostname }}
-  tags: lvm
-
-- name: add entry to fstab
-  lineinfile:
-    path: /etc/fstab
-    line: "/dev/mapper/{{ volumegroup }}-{{ hostname }}  {{ basedir }}/{{ hostname }} ext4 defaults 1 2"
   tags: lvm
 
 - name: mount volume
@@ -26,5 +19,6 @@
     path: "{{ basedir }}/{{ hostname }}"
     src: "/dev/mapper/{{ volumegroup }}-{{ hostname }}"
     fstype: ext4
-    state: present
+    state: mounted
+    opts: default
   tags: lvm
