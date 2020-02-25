@@ -6,7 +6,7 @@
   lvol:
     vg: "{{ volumegroup }}"
     lv: "{{ hostname }}"
-    size: "{{ disksize_mb }}g"
+    size: "{{ disksize_gb }}g"
 
 - name: create fs
   filesystem:
@@ -22,3 +22,18 @@
     state: mounted
     opts: defaults
   tags: lvm
+
+- name: create vm
+  command: >
+    virt-install -n {{ hostname }} \
+    --description {{ description }} \
+    --os-type=Linux \
+    --os-variant=centos7.0 \
+    --ram={{ ramsize_mb }} \
+    --vcpus={{ cpu_counts }} \
+    --disk path="{{ basedir }}/{{ hostname }}/{{ hostname }}.img,bus=virtio,size={{ disksize_gb + overhead }},sparse=false,cache=none,io=native" \
+    -l http://ftp.uninett.no/pub/linux/centos/7.7.1908/os/x86_64/ \
+    --network bridge:br0 \
+    -x "ks=http://software.ii.uib.no/kickstart/{{ hostname }}.ks ip={{ ip }} netmask=255.255.255.0 dns={{ dns }} gateway={{ gateway }}"
+
+    
