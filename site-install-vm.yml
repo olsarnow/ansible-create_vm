@@ -8,4 +8,4 @@
 #  roles:
 
   include:
-    - playbooks/check.yml
+    - check.yml
