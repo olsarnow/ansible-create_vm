@@ -5,7 +5,6 @@
     - group_vars/all
   become: true
 
-#  roles:
+  roles:
+    - cr_vm_diskfile
 
-  include:
-    - check.yml

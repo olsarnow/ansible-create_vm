@@ -1,0 +1,8 @@
+---
+# tasks file for cr_vm_diskfile
+# create vm with diskfile in a directory
+
+- name: create lvm disk and mountpoint
+  command: >
+    lvcreate -L 
+

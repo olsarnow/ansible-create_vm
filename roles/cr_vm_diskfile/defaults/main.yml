@@ -1,0 +1,8 @@
+hostname: testvm
+ramsize_mb: 4096
+cpu_counts: 1
+disksize_mb: 50
+description: "just_another_vm"
+ip: 129.177.16.106
+dns: 129.177.16.3
+gateway: 129.177.16.1
