@@ -36,5 +36,3 @@
     --network bridge:br0 \
     -x "ks=http://software.ii.uib.no/kickstart/{{ hostname }}.ks ip={{ ip }} netmask=255.255.255.0 dns={{ dns }} gateway={{ gateway }}"
   tags: crvm
-
-    
