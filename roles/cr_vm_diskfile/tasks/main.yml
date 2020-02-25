@@ -1,6 +1,6 @@
 ---
 # tasks file for cr_vm_diskfile
-# create vm with diskfile in a directory
+# create vm with diskfile in a lvm based directory
 
 - name: create lvm
   lvol:
