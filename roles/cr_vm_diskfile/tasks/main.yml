@@ -35,5 +35,6 @@
     -l http://ftp.uninett.no/pub/linux/centos/7.7.1908/os/x86_64/ \
     --network bridge:br0 \
     -x "ks=http://software.ii.uib.no/kickstart/{{ hostname }}.ks ip={{ ip }} netmask=255.255.255.0 dns={{ dns }} gateway={{ gateway }}"
+  tags: crvm
 
     
