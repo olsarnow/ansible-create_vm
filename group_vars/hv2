@@ -1,1 +1,2 @@
 volumegroup: export
+basedir: "/export/virtual/vmdata/"
