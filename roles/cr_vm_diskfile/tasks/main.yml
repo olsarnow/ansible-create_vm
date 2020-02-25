@@ -2,16 +2,28 @@
 # tasks file for cr_vm_diskfile
 # create vm with diskfile in a directory
 
-- name: create lvm disk and mount to directory
-  command: >
-    lvcreate -L {{ disksize }}GB -n {{ hostname }} {{ volumegroup }}
-    mkfs.ext4 /dev/{{ volumegroup }}/vm-{{ hostname }}
-    mkdir {{ basedir }}/{{ hostname }}
-    echo "/dev/mapper/export-vm--{{ hostname }}  {{ basedir }}/{{ hostname }} ext4 defaults 1 2" >> /etc/fstab
+- name: create lvm
+  lvol:
+    vg: "{{ volumegroup }}"
+    lv: "{{ hostname }}"
+    size: "{{ disksize_mb }}g"
+
+- name: create mkfs and create directory
+  command: "{{ item }}"
+  with_items: 
+    - mkfs.ext4 /dev/{{ volumegroup }}/{{ hostname }}
+    - mkdir {{ basedir }}/{{ hostname }}
+  tags: lvm
+
+- name: add entry to fstab
+  lineinfile:
+    path: /etc/fstab
+    line: "/dev/mapper/{{ volumegroup }}-{{ hostname }}  {{ basedir }}/{{ hostname }} ext4 defaults 1 2"
   tags: lvm
 
 - name: mount volume
   mount:
     path: "{{ basedir }}/{{ hostname }}"
+    src: 
     state: present
   tags: lvm
